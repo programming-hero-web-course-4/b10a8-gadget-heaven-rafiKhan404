@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Banner from "./Banner";
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState("All Product");
@@ -16,47 +17,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Purple Banner Section with Navigation and Hero */}
-      <div className="bg-gradient-to-b from-purple-600 to-purple-500 pb-32">
-        {/* Navigation */}
-        <nav className="flex items-center justify-between p-4">
-          <div className="text-white text-xl font-semibold">Gadget Heaven</div>
-          <div className="flex space-x-6">
-            <a href="#" className="text-white">
-              Home
-            </a>
-            <a href="#" className="text-white">
-              Statistics
-            </a>
-            <a href="#" className="text-white">
-              Dashboard
-            </a>
-          </div>
-          <div className="flex space-x-4">
-            <button className="text-white p-2 hover:bg-white/10 rounded-full">
-              <FaShoppingCart className="h-5 w-5" />
-            </button>
-            <button className="text-white p-2 hover:bg-white/10 rounded-full">
-              <FaUser className="h-5 w-5" />
-            </button>
-          </div>
-        </nav>
-
-        {/* Hero Section */}
-        <section className="text-center px-4 pt-16 pb-32">
-          <h1 className="text-white text-4xl md:text-5xl font-bold max-w-3xl mx-auto mb-4">
-            Upgrade Your Tech Accessorize with Gadget Heaven Accessories
-          </h1>
-          <p className="text-white/90 max-w-2xl mx-auto mb-8">
-            Explore the latest gadgets that will take your experience to the
-            next level. From smart devices to the coolest accessories, we have
-            it all!
-          </p>
-          <button className="bg-white text-purple-600 hover:bg-white/90 px-6 py-2 rounded-md font-medium">
-            Shop Now
-          </button>
-        </section>
-      </div>
-
+      <Banner />
       {/* VR Headset Section - Overlapping */}
       <div className="max-w-4xl mx-auto px-4 -mt-48 relative z-10">
         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
@@ -108,51 +69,18 @@ function Home() {
                   <p className="text-gray-600 mb-4">
                     Price: ${product.price.toFixed(2)}
                   </p>
-                  <button className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-md hover:bg-purple-50">
+                  <Link
+                    to={`product/${product.id}`}
+                    className="w-full inline-block text-center hover:bg-purple-800 duration-300 px-4 py-2 border hover:text-white border-purple-600 text-purple-600 rounded-md "
+                  >
                     View Details
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-white px-4 py-12 text-center">
-        <h2 className="text-2xl font-bold mb-2">Gadget Heaven</h2>
-        <p className="text-gray-600 mb-8">
-          Leading the way in cutting-edge technology and innovation.
-        </p>
-
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="font-semibold mb-4">Services</h3>
-            <div className="space-y-2">
-              <p>Product Support</p>
-              <p>Order Tracking</p>
-              <p>Shipping & Delivery</p>
-              <p>Returns</p>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <div className="space-y-2">
-              <p>About Us</p>
-              <p>Careers</p>
-              <p>Contact</p>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <div className="space-y-2">
-              <p>Terms of Service</p>
-              <p>Privacy Policy</p>
-              <p>Cookie Policy</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
