@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { StoreContext } from "../App";
 import Cart from "./Cart";
 import WishList from "./WIshlist";
@@ -16,7 +16,9 @@ const Dashboard = () => {
   };
 
   const handleSort = () => {
-    data.setCart((items) => [...items].sort((a, b) => a.price - b.price));
+    if (data.activeTab == "cart") {
+      data.setCart([...data.cart.sort((a, b) => a.price - b.price)]);
+    }
   };
 
   const handlePurchase = () => {
@@ -49,7 +51,10 @@ const Dashboard = () => {
         </div>
       </div>
       {data.activeTab === "cart" ? (
-        <Cart handleRemoveFromCart={handleRemoveFromCart} />
+        <Cart
+          handleRemoveFromCart={handleRemoveFromCart}
+          handleSort={handleSort}
+        />
       ) : (
         <WishList />
       )}

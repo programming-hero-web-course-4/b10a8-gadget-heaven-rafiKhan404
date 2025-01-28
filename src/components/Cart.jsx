@@ -4,7 +4,7 @@ import { StoreContext } from "../App";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { TbSortDescending2Filled } from "react-icons/tb";
 
-const Cart = ({ handleRemoveFromCart }) => {
+const Cart = ({ handleRemoveFromCart, handleSort }) => {
   const data = useContext(StoreContext);
   const totalCost = data.cart?.reduce((sum, item) => sum + item.price, 0);
   return (
@@ -15,7 +15,10 @@ const Cart = ({ handleRemoveFromCart }) => {
           <p className="text-lg font-bold">
             Total cost: ${totalCost.toFixed(2)}
           </p>
-          <button className="px-4 py-2 border border-purple-600 text-purple-600 rounded-full flex justify-center items-center hover:bg-purple-50">
+          <button
+            onClick={handleSort}
+            className="px-4 py-2 border border-purple-600 text-purple-600 rounded-full flex justify-center items-center hover:bg-purple-50"
+          >
             Sort by Price{" "}
             <span className="ml-2">
               <TbSortDescending2Filled />
