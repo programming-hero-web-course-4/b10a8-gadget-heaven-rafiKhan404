@@ -1,6 +1,11 @@
-import { FaHeart, FaShoppingCart, FaStar, FaUser } from "react-icons/fa";
+import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { productsList } from "./Home";
 
 function ProductDetails() {
+  const { id } = useParams();
+  const product = productsList.find((p) => p.id === Number(id));
+  console.log(product);
   return (
     <div className="min-h-screen bg-white">
       {/* Purple Banner */}
@@ -20,33 +25,35 @@ function ProductDetails() {
         <div className="bg-white rounded-xl shadow-xl p-8 flex gap-8">
           {/* Product Image */}
           <div className="w-1/2">
-            <div className="bg-gray-100 rounded-lg aspect-square"></div>
+            <div className="bg-gray-100 rounded-lg aspect-square">
+              <img
+                src={product.image}
+                alt="product image"
+                className="h-full w-full object-center object-cover"
+              />
+            </div>
           </div>
 
           {/* Product Info */}
           <div className="w-1/2 space-y-6">
             <div>
-              <h2 className="text-2xl font-bold mb-2">
-                Samsung Galaxy S23 Ultra
-              </h2>
-              <p className="text-xl font-semibold mb-2">Price: $ 999.99</p>
+              <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
+              <p className="text-xl font-semibold mb-2">
+                Price: bdt {product.price}
+              </p>
               <span className="inline-block px-3 py-1 text-sm text-green-700 bg-green-100 rounded-full">
                 In Stock
               </span>
             </div>
 
-            <p className="text-gray-600">
-              Ultra-slim, high-performance laptop with 13.4-inch Infinity Edge
-              display.
-            </p>
+            <p className="text-gray-600">{product.description}</p>
 
             <div>
               <h3 className="font-semibold mb-2">Specification</h3>
               <ul className="space-y-2 text-gray-600">
-                <li>1. Intel i7 11th Gen</li>
-                <li>2. 16GB RAM</li>
-                <li>3. 512GB SSD</li>
-                <li>4. Touchscreen</li>
+                {Object.values(product.specs).map((a, i) => (
+                  <li key={i}>{a}</li>
+                ))}
               </ul>
             </div>
 

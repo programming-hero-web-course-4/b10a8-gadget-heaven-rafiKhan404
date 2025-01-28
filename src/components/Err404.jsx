@@ -1,4 +1,5 @@
 import { FaArrowLeft, FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function NotFound() {
   return (
@@ -60,13 +61,13 @@ function NotFound() {
               <FaArrowLeft className="w-5 h-5" />
               Go Back
             </button>
-            <a
-              href="/"
+            <Link
+              to="/"
               className="flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700"
             >
               <FaHome className="w-5 h-5" />
               Back to Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

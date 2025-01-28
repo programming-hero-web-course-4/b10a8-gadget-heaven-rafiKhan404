@@ -86,7 +86,7 @@ function Home() {
 }
 
 export default Home;
-const productsList = [
+export const productsList = [
   {
     id: 1,
     name: "Dell XPS 13",

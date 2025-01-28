@@ -2,7 +2,7 @@ import { FaShoppingCart, FaUser } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <div className="bg-gradient-to-b from-purple-600 to-purple-500 sticky top-0">
+    <div className="bg-gradient-to-b from-purple-600 to-purple-500 sticky top-0 z-30">
       {/* Navigation */}
       <nav className="flex items-center justify-between p-4">
         <div className="text-white text-xl font-semibold">Gadget Heaven</div>
