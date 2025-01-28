@@ -1,7 +1,12 @@
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { useContext } from "react";
+import { CiHeart } from "react-icons/ci";
+import {} from "react-icons/fa";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../App";
 
 const Header = () => {
+  const data = useContext(StoreContext);
   return (
     <div className="bg-gradient-to-b from-purple-600 to-purple-500 sticky top-0 z-30">
       {/* Navigation */}
@@ -19,12 +24,28 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex space-x-4">
-          <button className="text-white p-2 hover:bg-white/10 rounded-full">
-            <FaShoppingCart className="h-5 w-5" />
-          </button>
-          <button className="text-white p-2 hover:bg-white/10 rounded-full">
-            <FaUser className="h-5 w-5" />
-          </button>
+          <Link
+            to="dashboard"
+            className="relative p-2 hover:bg-white/10 bg-white text-black rounded-full"
+          >
+            <MdOutlineShoppingCart className="h-5 w-5" />
+            {data.cart.length > 0 && (
+              <p className="absolute -top-1 -right-1 bg-white text-black  text-xs font-bold px-2 py-1 rounded-full animate-bounce">
+                {data.cart.length}
+              </p>
+            )}
+          </Link>
+          <Link
+            to="dashboard"
+            className="relative p-2 hover:bg-white/10 bg-white text-black rounded-full"
+          >
+            <CiHeart className="h-5 w-5" />
+            {data.wishList.length > 0 && (
+              <p className="absolute -top-1 -right-1 bg-white text-black  text-xs font-bold px-2 py-1 rounded-full animate-bounce">
+                {data.wishList.length}
+              </p>
+            )}
+          </Link>
         </div>
       </nav>
     </div>

@@ -1,11 +1,35 @@
 import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { productsList } from "./Home";
+import { StoreContext } from "../App";
+import { useContext } from "react";
 
 function ProductDetails() {
   const { id } = useParams();
   const product = productsList.find((p) => p.id === Number(id));
   console.log(product);
+
+  const data = useContext(StoreContext);
+  const handleAddToCart = () => {
+    const checkIfAlreadyInCart = data.cart.find((e) => e?.id === product.id);
+    if (checkIfAlreadyInCart) {
+      window.alert("You already added this product in cart");
+      return;
+    }
+    data.setCart([...data.cart, product]);
+    console.log(data, "this is cart");
+  };
+  const handleAddToWishList = () => {
+    const checkIfAlreadyInWishList = data.wishList.find(
+      (e) => e?.id === product.id
+    );
+    if (checkIfAlreadyInWishList) {
+      window.alert("You already added this product in WishList");
+      return;
+    }
+    data.setWishListItem([...data.wishList, product]);
+    console.log(data, "this is cart");
+  };
   return (
     <div className="min-h-screen bg-white">
       {/* Purple Banner */}
@@ -78,11 +102,17 @@ function ProductDetails() {
             </div>
 
             <div className="flex gap-4">
-              <button className="flex items-center justify-center gap-2 px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">
+              <button
+                onClick={handleAddToCart}
+                className="flex items-center justify-center gap-2 px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700"
+              >
                 <FaShoppingCart className="w-5 h-5" />
                 Add To Card
               </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full">
+              <button
+                onClick={handleAddToWishList}
+                className="p-2 hover:bg-gray-100 rounded-full"
+              >
                 <FaHeart className="w-5 h-5" />
               </button>
             </div>
