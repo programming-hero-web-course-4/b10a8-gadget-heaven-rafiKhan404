@@ -3,6 +3,8 @@ import NotFound from "./components/Err404";
 import Home from "./components/Home";
 import MainLayout from "./layout/MainLayout";
 import ProductDetails from "./components/ProductDetailsPage";
+import Dashboard from "./components/Dashboard";
+import Statistics from "./components/Statistics";
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +20,14 @@ export const router = createBrowserRouter([
         path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
       },
-      // {
-      //     path: '/hotels/:id',
-      //     element: <HotelDetails />
-      // }
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/statistics",
+        element: <Statistics />,
+      },
     ],
   },
   {

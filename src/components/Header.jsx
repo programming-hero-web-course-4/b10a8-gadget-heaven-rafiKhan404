@@ -1,4 +1,5 @@
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -7,15 +8,15 @@ const Header = () => {
       <nav className="flex items-center justify-between p-4">
         <div className="text-white text-xl font-semibold">Gadget Heaven</div>
         <div className="flex space-x-6">
-          <a href="#" className="text-white">
+          <Link to="/" className="text-white">
             Home
-          </a>
-          <a href="#" className="text-white">
+          </Link>
+          <Link to="/statistics" className="text-white">
             Statistics
-          </a>
-          <a href="#" className="text-white">
+          </Link>
+          <Link to="/dashboard" className="text-white">
             Dashboard
-          </a>
+          </Link>
         </div>
         <div className="flex space-x-4">
           <button className="text-white p-2 hover:bg-white/10 rounded-full">
